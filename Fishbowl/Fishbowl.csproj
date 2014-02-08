@@ -108,10 +108,12 @@
     </Compile>
     <Compile Include="Bubble.cs" />
     <Compile Include="BubbleContainer.cs" />
+    <Compile Include="FishUtil.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SwimBubble.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
