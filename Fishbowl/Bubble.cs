@@ -27,7 +27,7 @@ namespace Fishbowl
         protected Point velocity;
         protected double radius;
 
-        public Bubble()
+        public Bubble(String t = "")
         {
             position = new Point();
             velocity = new Point(0.1, 0.1);
@@ -40,7 +40,7 @@ namespace Fishbowl
             };
             text = new TextBlock()
             {
-                Text = "Text here!",
+                Text = t,
                 Foreground = new SolidColorBrush(Colors.Black),
                 FontSize = 32
             };

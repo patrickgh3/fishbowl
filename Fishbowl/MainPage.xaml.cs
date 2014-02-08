@@ -57,7 +57,24 @@ namespace Fishbowl
 
         private void BubbleCanvas_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            currentContainer.addRandomBubble();
+            
+        }
+
+        private void BubbleCanvas_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+
+        }
+
+        private void AddOkButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentContainer.addBubble(AddTextBox.Text);
+            AddTextBox.Text = "";
+            AddFlyout.Hide();
+        }
+
+        private void AddTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter) AddOkButton_Click(null, null);
         }
     }
 }

@@ -12,6 +12,10 @@ namespace Fishbowl
         private static double swimSlow = 0.998;
         private static double swimProb = 0.001;
 
+        public SwimBubble(String t = "") : base(t)
+        {
+        }
+
         override public void tick()
         {
             velocity.x *= swimSlow;

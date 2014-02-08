@@ -40,6 +40,14 @@ namespace Fishbowl
             }
         }
 
+        public void addBubble(String t)
+        {
+            Bubble b = new SwimBubble(t);
+            bubbles.Add(b);
+            Rect bounds = Window.Current.Bounds;
+            b.setPosition(FishUtil.random.NextDouble() * bounds.Width, FishUtil.random.NextDouble() * bounds.Height);
+        }
+
         public void addRandomBubble()
         {
             Bubble b = new SwimBubble();
