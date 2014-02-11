@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Canvas x:Name="BubbleCanvas" PointerPressed="BubbleCanvas_PointerPressed" Background="#FFAAAAAA" PointerReleased="BubbleCanvas_PointerReleased"/>
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" PointerMoved="Grid_PointerMoved" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased" PointerExited="Grid_PointerExited">
+        <Canvas x:Name="BubbleCanvas" Background="#FFAAAAAA"/>
         <Button x:Name="AddButton" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource AddAppBarButtonStyle}">
             <Button.Flyout>
                 <Flyout x:Name="AddFlyout" Placement="Bottom">

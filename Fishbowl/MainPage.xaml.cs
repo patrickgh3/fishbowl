@@ -24,14 +24,16 @@ namespace Fishbowl
     public sealed partial class MainPage : Page
     {
         BubbleContainer currentContainer;
+        DragController dragController;
 
         public MainPage()
         {
             this.InitializeComponent();
             BubbleContainer.canvas = BubbleCanvas;
             currentContainer = new BubbleContainer();
+            dragController = new DragController();
 
-            // Create a periodic work schedule - every 1 second update all the bubbles.
+            // Create a periodic work schedule - every 1 millisecond update all the bubbles.
             // http://msdn.microsoft.com/en-US/library/windows/apps/jj248676
             TimeSpan period = TimeSpan.FromMilliseconds(1);
             ThreadPoolTimer PeriodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
@@ -55,16 +57,6 @@ namespace Fishbowl
         {
         }
 
-        private void BubbleCanvas_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            
-        }
-
-        private void BubbleCanvas_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
-
         private void AddOkButton_Click(object sender, RoutedEventArgs e)
         {
             currentContainer.addBubble(AddTextBox.Text);
@@ -75,6 +67,26 @@ namespace Fishbowl
         private void AddTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter) AddOkButton_Click(null, null);
+        }
+
+        private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            dragController.Pressed(e.GetCurrentPoint(BubbleCanvas).Position, currentContainer);
+        }
+
+        private void Grid_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            dragController.Moved(e.GetCurrentPoint(BubbleCanvas).Position);
+        }
+
+        private void Grid_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            dragController.Released();
+        }
+
+        private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            dragController.Released();
         }
     }
 }

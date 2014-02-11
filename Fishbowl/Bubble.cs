@@ -26,6 +26,7 @@ namespace Fishbowl
         protected Point position;
         protected Point velocity;
         protected double radius;
+        protected bool beingdragged;
 
         public Bubble(String t = "")
         {
@@ -51,6 +52,8 @@ namespace Fishbowl
 
         public virtual void tick()
         {
+            if (beingdragged) return;
+
             position.x += velocity.x;
             position.y += velocity.y;
 
@@ -95,6 +98,24 @@ namespace Fishbowl
             position.x = x;
             position.y = y;
             updateCanvasPos();
+        }
+
+        public void moveBy(double dx, double dy)
+        {
+            position.x += dx;
+            position.y += dy;
+            updateCanvasPos();
+        }
+
+        public void setVelocity(double x, double y)
+        {
+            velocity.x = x;
+            velocity.y = y;
+        }
+
+        public void setDragged(bool beingdragged)
+        {
+            this.beingdragged = beingdragged;
         }
 
         public Point getPosition()

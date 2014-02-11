@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Bubble.cs" />
     <Compile Include="BubbleContainer.cs" />
+    <Compile Include="DragController.cs" />
     <Compile Include="FishUtil.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

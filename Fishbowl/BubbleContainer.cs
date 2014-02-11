@@ -55,5 +55,14 @@ namespace Fishbowl
             Rect bounds = Window.Current.Bounds;
             b.setPosition(FishUtil.random.NextDouble() * bounds.Width, FishUtil.random.NextDouble() * bounds.Height);
         }
+
+        public Bubble catchBubble(Point p)
+        {
+            for (int i = 0; i < bubbles.Count; i++)
+            {
+                if (FishUtil.containsPoint(bubbles[i], p)) return bubbles[i];
+            }
+            return null;
+        }
     }
 }
