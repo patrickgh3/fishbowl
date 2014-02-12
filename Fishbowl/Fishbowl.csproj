@@ -112,6 +112,8 @@
     </Compile>
     <Compile Include="Bubble.cs" />
     <Compile Include="BubbleContainer.cs" />
+    <Compile Include="BubbleAttributes\BubbleContent.cs" />
+    <Compile Include="BubbleAttributes\BubbleShape.cs" />
     <Compile Include="DragController.cs" />
     <Compile Include="FishUtil.cs" />
     <Compile Include="MainPage.xaml.cs">

@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml;
 using Windows.Foundation;
 using System.Diagnostics;
+using Fishbowl.BubbleAttributes;
 
 namespace Fishbowl
 {
@@ -21,44 +22,21 @@ namespace Fishbowl
         protected static double stdRadius = 100;
         protected static double pushStrength = 0.005;
 
-        protected Shape shape;
-        protected TextBlock text;
-        protected Border textcontainer;
+        protected BubbleShape shape;
+        protected BubbleContent content;
+        
         protected Point position;
         protected Point velocity;
         protected double radius;
         protected bool beingdragged;
 
-        public Bubble(String t = "")
+        public Bubble(String text = "")
         {
             position = new Point();
             velocity = new Point(0.1, 0.1);
             radius = stdRadius;
-            shape = new Ellipse()
-            {
-                Width = radius * 2,
-                Height = radius * 2,
-                Fill = new SolidColorBrush(Colors.White)
-            };
-            text = new TextBlock()
-            {
-                Text = t,
-                Foreground = new SolidColorBrush(Colors.Black),
-                TextAlignment = Windows.UI.Xaml.TextAlignment.Center,
-                FontSize = 32,
-                Width = radius * 2,
-                MaxHeight = radius * 2,
-                TextWrapping = TextWrapping.WrapWholeWords,
-                TextTrimming = TextTrimming.CharacterEllipsis,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            textcontainer = new Border()
-            {
-                Height = radius * 2,
-                Child = text,
-            };
-            BubbleContainer.canvas.Children.Add(shape);
-            BubbleContainer.canvas.Children.Add(textcontainer);
+            shape = new BubbleShape(this);
+            content = new BubbleContent(this, text);
             tick();
         }
 
@@ -99,10 +77,8 @@ namespace Fishbowl
 
         private void updateCanvasPos()
         {
-            Canvas.SetLeft(shape, position.x - radius);
-            Canvas.SetTop(shape, position.y - radius);
-            Canvas.SetLeft(textcontainer, position.x - radius);
-            Canvas.SetTop(textcontainer, position.y - radius);
+            shape.UpdateCanvasPos();
+            content.UpdateCanvasPos();
         }
 
         public void setPosition(double x, double y)
