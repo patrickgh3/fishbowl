@@ -43,6 +43,7 @@ namespace Fishbowl.BubbleAttributes
                 Child = textblock,
             };
             BubbleContainer.canvas.Children.Add(textcontainer);
+            Canvas.SetZIndex(textcontainer, Int16.MaxValue);
         }
 
         public void UpdateAppearance()
