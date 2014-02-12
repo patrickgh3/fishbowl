@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ApplicationSettings;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -86,6 +87,27 @@ namespace Fishbowl
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        // Custom settings flyout
+        // http://msdn.microsoft.com/en-us/library/windows/apps/hh872190.aspx
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
+        }
+
+        private void OnCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+
+            args.Request.ApplicationCommands.Add(new SettingsCommand(
+                "Preferences", "Preferences", (handler) => ShowPreferencesFlyout()));
+        }
+
+        public void ShowPreferencesFlyout()
+        {
+            Preferences CustomSettingFlyout = new Preferences();
+            CustomSettingFlyout.Show();
         }
     }
 }
