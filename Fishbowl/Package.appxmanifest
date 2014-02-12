@@ -3,7 +3,7 @@
   <Identity Name="92f717a3-2bfb-494f-ba35-490eb00124cf" Publisher="CN=patri_000" Version="1.1.0.0" />
   <Properties>
     <DisplayName>Fishbowl</DisplayName>
-    <PublisherDisplayName>patri_000</PublisherDisplayName>
+    <PublisherDisplayName>Patrick Traynor</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Fishbowl.App">
-      <m2:VisualElements DisplayName="Fishbowl" Description="An organizational toy." BackgroundColor="#3FBBC4" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+      <m2:VisualElements DisplayName="Fishbowl" Description="An organizational toy." BackgroundColor="#3FBBC4" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" ToastCapable="false">
         <m2:DefaultTile ShortName="Fishbowl" DefaultSize="square150x150Logo">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
@@ -23,10 +23,10 @@
         </m2:DefaultTile>
         <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#3FBBC4" />
         <m2:ApplicationView MinWidth="width320" />
+        <m2:InitialRotationPreference>
+          <m2:Rotation Preference="landscape" />
+        </m2:InitialRotationPreference>
       </m2:VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
