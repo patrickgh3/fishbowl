@@ -23,6 +23,7 @@ namespace Fishbowl
 
         protected Shape shape;
         protected TextBlock text;
+        protected Border textcontainer;
         protected Point position;
         protected Point velocity;
         protected double radius;
@@ -43,10 +44,21 @@ namespace Fishbowl
             {
                 Text = t,
                 Foreground = new SolidColorBrush(Colors.Black),
-                FontSize = 32
+                TextAlignment = Windows.UI.Xaml.TextAlignment.Center,
+                FontSize = 32,
+                Width = radius * 2,
+                MaxHeight = radius * 2,
+                TextWrapping = TextWrapping.WrapWholeWords,
+                TextTrimming = TextTrimming.CharacterEllipsis,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            textcontainer = new Border()
+            {
+                Height = radius * 2,
+                Child = text,
             };
             BubbleContainer.canvas.Children.Add(shape);
-            BubbleContainer.canvas.Children.Add(text);
+            BubbleContainer.canvas.Children.Add(textcontainer);
             tick();
         }
 
@@ -89,8 +101,8 @@ namespace Fishbowl
         {
             Canvas.SetLeft(shape, position.x - radius);
             Canvas.SetTop(shape, position.y - radius);
-            Canvas.SetLeft(text, position.x);
-            Canvas.SetTop(text, position.y);
+            Canvas.SetLeft(textcontainer, position.x - radius);
+            Canvas.SetTop(textcontainer, position.y - radius);
         }
 
         public void setPosition(double x, double y)
