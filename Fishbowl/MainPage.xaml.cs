@@ -23,8 +23,8 @@ namespace Fishbowl
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        BubbleContainer currentContainer;
-        DragController dragController;
+        static BubbleContainer currentContainer;
+        static DragController dragController;
 
         public MainPage()
         {
@@ -55,6 +55,11 @@ namespace Fishbowl
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        internal static BubbleContainer getCurrentContainer()
+        {
+            return currentContainer;
         }
 
         private void AddOkButton_Click(object sender, RoutedEventArgs e)

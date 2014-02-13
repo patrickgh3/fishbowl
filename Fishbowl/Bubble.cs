@@ -81,6 +81,12 @@ namespace Fishbowl
             content.UpdateCanvasPos();
         }
 
+        public void UpdateAppearance()
+        {
+            shape.UpdateAppearance();
+            content.UpdateAppearance();
+        }
+
         public void setPosition(double x, double y)
         {
             position.x = x;

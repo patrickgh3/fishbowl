@@ -38,5 +38,15 @@
             <Slider x:Name="PushStrengthSlider" ValueChanged="PushStrengthSlider_ValueChanged" Maximum="1" SmallChange="0.01" StepFrequency="0.01" LargeChange="0.1" Foreground="#004917B4"/>
         </StackPanel>
 
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="ComboBox" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Margin="0,0,0,25" Text="Use the ComboBox to allow users to select one item from a set of text-only items." Style="{StaticResource BodyTextBlockStyle}"/>
+            <ComboBox x:Name="FontFamilyComboBox" Header="Font family:" Margin="0,7,0,0" HorizontalAlignment="Left" SelectionChanged="FontFamilyComboBox_SelectionChanged">
+                <ComboBoxItem Content="Sans-Serif"/>
+                <ComboBoxItem Content="Serif"/>
+                <ComboBoxItem Content="Monospaced"/>
+            </ComboBox>
+        </StackPanel>
+
     </StackPanel>
 </SettingsFlyout>

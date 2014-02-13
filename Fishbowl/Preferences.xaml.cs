@@ -19,6 +19,8 @@ namespace Fishbowl
 {
     public sealed partial class Preferences : SettingsFlyout
     {
+        public static FontFamily FontFamily = new FontFamily("Segoe UI");
+
         public Preferences()
         {
             this.InitializeComponent();
@@ -35,6 +37,16 @@ namespace Fishbowl
         public void SetControlsToDefaults()
         {
             PushStrengthSlider.Value = 0.45;
+            FontFamilyComboBox.SelectedItem = "Serif";
+        }
+
+        private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontFamilyComboBox.SelectedIndex == 0) FontFamily = new FontFamily("Segoe UI");
+            else if (FontFamilyComboBox.SelectedIndex == 1) FontFamily = new FontFamily("Times New Roman");
+            else if (FontFamilyComboBox.SelectedIndex == 2) FontFamily = new FontFamily("Consolas");
+
+            MainPage.getCurrentContainer().UpdateBubbleAppearance();
         }
     }
 }

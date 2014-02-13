@@ -64,5 +64,13 @@ namespace Fishbowl
             }
             return null;
         }
+
+        public void UpdateBubbleAppearance()
+        {
+            for (int i = 0; i < bubbles.Count; i++)
+            {
+                bubbles[i].UpdateAppearance();
+            }
+        }
     }
 }
