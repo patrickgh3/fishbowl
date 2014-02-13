@@ -24,6 +24,8 @@ namespace Fishbowl
     /// </summary>
     sealed partial class App : Application
     {
+        public static Preferences preferences;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -32,6 +34,7 @@ namespace Fishbowl
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            preferences = new Preferences();
         }
 
         /// <summary>
@@ -69,6 +72,7 @@ namespace Fishbowl
                 {
                     throw new Exception("Failed to create initial page");
                 }
+                preferences.SetControlsToDefaults();
             }
 
             // Ensure the current window is active
@@ -106,8 +110,7 @@ namespace Fishbowl
 
         public void ShowPreferencesFlyout()
         {
-            Preferences CustomSettingFlyout = new Preferences();
-            CustomSettingFlyout.Show();
+            preferences.Show();
         }
     }
 }

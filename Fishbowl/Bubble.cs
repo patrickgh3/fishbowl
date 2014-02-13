@@ -20,7 +20,7 @@ namespace Fishbowl
     class Bubble
     {
         protected static double stdRadius = 100;
-        protected static double pushStrength = 0.005;
+        public static double pushStrength;
 
         protected BubbleShape shape;
         protected BubbleContent content;
@@ -33,7 +33,7 @@ namespace Fishbowl
         public Bubble(String text = "")
         {
             position = new Point();
-            velocity = new Point(0.1, 0.1);
+            velocity = new Point();
             radius = stdRadius;
             shape = new BubbleShape(this);
             content = new BubbleContent(this, text);
@@ -66,7 +66,7 @@ namespace Fishbowl
             double radiussquared = (otherrad + radius) * (otherrad + radius);
             if (distancesquared < radiussquared)
             {
-                double magnitude = (1 - distancesquared / radiussquared) * pushStrength;
+                double magnitude = (1 - (distancesquared * distancesquared) / (radiussquared * radiussquared)) * pushStrength;
                 double pushangle = Math.Atan((otherpos.y - position.y) / (otherpos.x - position.x)) + Math.PI;
                 if (otherpos.x < position.x) pushangle += Math.PI;
 

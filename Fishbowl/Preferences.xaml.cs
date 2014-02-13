@@ -23,5 +23,18 @@ namespace Fishbowl
         {
             this.InitializeComponent();
         }
+
+        private void PushStrengthSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            double slidervalue = (1 - PushStrengthSlider.Value) * -5;
+            double pushstrength = Math.Pow(10, slidervalue);
+            if (PushStrengthSlider.Value == 0) pushstrength = 0;
+            Bubble.pushStrength = pushstrength;
+        }
+
+        public void SetControlsToDefaults()
+        {
+            PushStrengthSlider.Value = 0.45;
+        }
     }
 }

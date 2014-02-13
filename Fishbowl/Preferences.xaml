@@ -32,6 +32,11 @@
         </StackPanel>
 
         <!-- Define more Content Sections below as necessary -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="TextBox" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Margin="0,0,0,25" Text="Use a TextBox to allow users to enter text." Style="{StaticResource BodyTextBlockStyle}"/>
+            <Slider x:Name="PushStrengthSlider" ValueChanged="PushStrengthSlider_ValueChanged" Maximum="1" SmallChange="0.01" StepFrequency="0.01" LargeChange="0.1" Foreground="#004917B4"/>
+        </StackPanel>
 
     </StackPanel>
 </SettingsFlyout>
