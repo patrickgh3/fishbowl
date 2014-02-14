@@ -136,7 +136,8 @@
     <None Include="Fishbowl_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\ColorSelectorGradient.png" />
+    <Content Include="Assets\ColorSelectorHueGradient.png" />
+    <Content Include="Assets\ColorSelectorSatValGradient.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />

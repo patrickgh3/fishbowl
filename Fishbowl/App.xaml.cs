@@ -35,8 +35,6 @@ namespace Fishbowl
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            preferences = new Preferences();
-            colorsettings = new ColorSettings();
         }
 
         /// <summary>
@@ -48,6 +46,8 @@ namespace Fishbowl
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+            preferences = new Preferences();
+            colorsettings = new ColorSettings();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

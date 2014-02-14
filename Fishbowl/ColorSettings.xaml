@@ -18,7 +18,10 @@
             <RadioButton x:Name="BubbleRadioButton" Margin="0,17,0,0" Content="Bubble" Checked="BubbleRadioButton_Checked"/>
             <RadioButton x:Name="TextRadioButton" Margin="0,17,0,0" Content="Text" Checked="TextRadioButton_Checked"/>
         </StackPanel>
-        
+
+        <!-- Hue Slider -->
+            <Slider x:Name="ColorSelectorHueSlider" Maximum="359" ValueChanged="ColorSelectorHueSlider_ValueChanged" Style="{StaticResource ColorSelectorHueSliderStyle}" Margin="-5,0" IsThumbToolTipEnabled="False"/>
+
         <!-- Color Selector -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
             <Grid Height="256" Width="256">
@@ -26,7 +29,7 @@
                 <Rectangle x:Name="ColorSelectorHueRect" Width="256" Height="256" Fill="Red" />
                 <Rectangle Width="256" Height="256" PointerPressed="Selector_PointerPressed">
                     <Rectangle.Fill>
-                        <ImageBrush ImageSource="Assets/ColorSelectorGradient.png"/>
+                        <ImageBrush ImageSource="Assets/ColorSelectorSatValGradient.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
                 <Canvas x:Name="ColorSelectorCanvas" Width="256" Height="256">
@@ -34,8 +37,7 @@
                     <Ellipse x:Name="ColorSelectorEllipse" Height="20" Width="20" Stroke="Black" Canvas.Left="246" Canvas.Top="-10" PointerPressed="Selector_PointerPressed"/>
                 </Canvas>
             </Grid>
-            <!-- Hue Slider -->
-            <Slider x:Name="ColorSelectorHueSlider" Width="256" Maximum="359" ValueChanged="ColorSelectorHueSlider_ValueChanged"/>
+
         </StackPanel>
 
     </StackPanel>
