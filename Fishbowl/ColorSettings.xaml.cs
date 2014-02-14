@@ -21,6 +21,9 @@ namespace Fishbowl
     public sealed partial class ColorSettings : SettingsFlyout
     {
         public static Color BackgroundColor;
+        public static Color BubbleColor;
+        public static Color TextColor;
+        unsafe private Color* selectedcolor;
         private bool pressed;
         private double sat;
         private double val;
@@ -35,6 +38,20 @@ namespace Fishbowl
                 B = 0xdd,
                 A = 0xff
             };
+            BubbleColor = new Color()
+            {
+                R = 0xff,
+                G = 0xff,
+                B = 0xff,
+                A = 0xff
+            };
+            TextColor = new Color()
+            {
+                R = 0x00,
+                G = 0x00,
+                B = 0x00,
+                A = 0xff
+            };
         }
 
         public void SetControlsToDefaults()
@@ -44,16 +61,23 @@ namespace Fishbowl
             ColorSelectorHueSlider.Value = 0;
         }
 
-        // color related
+        // color-related calculations
 
-        private void UpdateColor()
+        private unsafe void UpdateColor()
         {
             byte r, g, b;
             FishUtil.HsvToRgb(ColorSelectorHueSlider.Value, sat, val, out r, out g, out b);
-            BackgroundColor.R = r;
-            BackgroundColor.G = g;
-            BackgroundColor.B = b;
-            ((SolidColorBrush)BubbleContainer.canvas.Background).Color = BackgroundColor;
+            selectedcolor->R = r;
+            selectedcolor->G = g;
+            selectedcolor->B = b;
+            if (*selectedcolor == BackgroundColor)
+            {
+                ((SolidColorBrush)BubbleContainer.canvas.Background).Color = BackgroundColor;
+            }
+            else if (*selectedcolor == BubbleColor || *selectedcolor == TextColor)
+            {
+                MainPage.getCurrentContainer().UpdateBubbleAppearance();
+            }
 
             FishUtil.HsvToRgb(ColorSelectorHueSlider.Value, 1, 1, out r, out g, out b);
             ((SolidColorBrush)ColorSelectorHueRect.Fill).Color = new Color() { R = r, G = g, B = b, A = 0xff };
@@ -76,7 +100,33 @@ namespace Fishbowl
             UpdateColor();
         }
 
-        // non-color releated
+        // switching colors
+
+        private unsafe void BackgroundRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            fixed(Color* colorptr = &BackgroundColor)
+            {
+                selectedcolor = colorptr;
+            }
+        }
+
+        private unsafe void BubbleRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            fixed (Color* colorptr = &BubbleColor)
+            {
+                selectedcolor = colorptr;
+            }
+        }
+
+        private unsafe void TextRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            fixed (Color* colorptr = &TextColor)
+            {
+                selectedcolor = colorptr;
+            }
+        }
+
+        // pointer tracking
 
         private void Rectangle_PointerPressed(object sender, PointerRoutedEventArgs e)
         {

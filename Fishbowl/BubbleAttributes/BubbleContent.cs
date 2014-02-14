@@ -28,7 +28,7 @@ namespace Fishbowl.BubbleAttributes
             textblock = new TextBlock()
             {
                 Text = text,
-                Foreground = new SolidColorBrush(Colors.Black),
+                Foreground = new SolidColorBrush(ColorSettings.TextColor),
                 TextAlignment = Windows.UI.Xaml.TextAlignment.Center,
                 FontSize = 32,
                 FontFamily = Preferences.FontFamily,
@@ -53,6 +53,7 @@ namespace Fishbowl.BubbleAttributes
             // based on global state (e.g. custom bubble collor setting),
             // and parent state (e.g. what's the current radius at?).
             textblock.FontFamily = Preferences.FontFamily;
+            ((SolidColorBrush)textblock.Foreground).Color = ColorSettings.TextColor;
         }
 
         public void UpdateCanvasPos()

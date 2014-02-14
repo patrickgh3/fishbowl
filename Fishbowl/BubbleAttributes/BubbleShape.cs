@@ -27,7 +27,7 @@ namespace Fishbowl.BubbleAttributes
             {
                 Width = radius * 2,
                 Height = radius * 2,
-                Fill = new SolidColorBrush(Colors.White)
+                Fill = new SolidColorBrush(ColorSettings.BubbleColor)
             };
             BubbleContainer.canvas.Children.Add(shape);
         }
@@ -36,6 +36,7 @@ namespace Fishbowl.BubbleAttributes
         {
             // TODO: update based on parent state (e.g. parent radius)
             // and global state (e.g. custom bubble color)
+            ((SolidColorBrush)shape.Fill).Color = ColorSettings.BubbleColor;
         }
 
         public void UpdateCanvasPos()
