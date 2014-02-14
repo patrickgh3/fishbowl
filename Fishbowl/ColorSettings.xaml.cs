@@ -128,29 +128,13 @@ namespace Fishbowl
 
         // pointer tracking
 
-        private void Rectangle_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void Selector_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             pressed = true;
             SettingsFlyout_PointerMoved(sender, e);
         }
 
-        private void SettingsFlyout_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            Windows.UI.Input.PointerPointProperties properties = e.GetCurrentPoint(ColorSelectorCanvas).Properties;
-            if (properties.IsLeftButtonPressed || properties.IsRightButtonPressed || properties.IsMiddleButtonPressed) pressed = true;
-        }
-
-        private void Rectangle_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            pressed = false;
-        }
-
-        private void SettingsFlyout_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            pressed = false;
-        }
-
-        private void SettingsFlyout_PointerExited(object sender, PointerRoutedEventArgs e)
+        public void MainPagePointerReleased()
         {
             pressed = false;
         }
