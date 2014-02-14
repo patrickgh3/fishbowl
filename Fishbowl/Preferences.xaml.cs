@@ -26,6 +26,14 @@ namespace Fishbowl
             this.InitializeComponent();
         }
 
+        public void SetControlsToDefaults()
+        {
+            PushStrengthSlider.Value = 0.45;
+            FontFamilyComboBox.SelectedIndex = 0;
+        }
+
+        // push strength
+
         private void PushStrengthSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             double slidervalue = (1 - PushStrengthSlider.Value) * -5;
@@ -34,11 +42,7 @@ namespace Fishbowl
             Bubble.pushStrength = pushstrength;
         }
 
-        public void SetControlsToDefaults()
-        {
-            PushStrengthSlider.Value = 0.45;
-            FontFamilyComboBox.SelectedIndex = 0;
-        }
+        // font family
 
         private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -47,6 +51,18 @@ namespace Fishbowl
             else if (FontFamilyComboBox.SelectedIndex == 2) FontFamily = new FontFamily("Consolas");
 
             MainPage.getCurrentContainer().UpdateBubbleAppearance();
+        }
+
+        // bubble size
+
+        private void BubbleSizeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+        }
+
+        private void BubbleSizeToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
