@@ -56,9 +56,7 @@ namespace Fishbowl
 
         public void SetControlsToDefaults()
         {
-            sat = 1;
-            val = 1;
-            ColorSelectorHueSlider.Value = 0;
+            BackgroundRadioButton.IsChecked = true;
         }
 
         // color-related calculations
@@ -106,10 +104,11 @@ namespace Fishbowl
 
         private unsafe void BackgroundRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            fixed(Color* colorptr = &BackgroundColor)
+            fixed (Color* colorptr = &BackgroundColor)
             {
                 selectedcolor = colorptr;
             }
+            UpdateControls();
         }
 
         private unsafe void BubbleRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -118,6 +117,7 @@ namespace Fishbowl
             {
                 selectedcolor = colorptr;
             }
+            UpdateControls();
         }
 
         private unsafe void TextRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -126,6 +126,22 @@ namespace Fishbowl
             {
                 selectedcolor = colorptr;
             }
+            UpdateControls();
+        }
+
+        private unsafe void UpdateControls()
+        {
+            Color c = *selectedcolor;
+            double hue;
+            FishUtil.RgbToHsv((int)c.R, (int)c.G, (int)c.B, out hue, out sat, out val);
+            ColorSelectorHueSlider.Value = hue;
+            double x, y;
+            FishUtil.HsvToPos(sat, val, out x, out y);
+            Canvas.SetLeft(ColorSelectorEllipse, x - ColorSelectorEllipse.Width / 2);
+            Canvas.SetTop(ColorSelectorEllipse, y - ColorSelectorEllipse.Height / 2);
+            Canvas.SetLeft(ColorSelectorInnerEllipse, x - ColorSelectorInnerEllipse.Width / 2);
+            Canvas.SetTop(ColorSelectorInnerEllipse, y - ColorSelectorInnerEllipse.Height / 2);
+
         }
 
         // pointer tracking

@@ -14,7 +14,7 @@
 
         <!-- Radio Buttons -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <RadioButton x:Name="BackgroundRadioButton" Margin="0,17,0,0" Content="Background" IsChecked="True" Checked="BackgroundRadioButton_Checked"/>
+            <RadioButton x:Name="BackgroundRadioButton" Margin="0,17,0,0" Content="Background" IsChecked="False" Checked="BackgroundRadioButton_Checked"/>
             <RadioButton x:Name="BubbleRadioButton" Margin="0,17,0,0" Content="Bubble" Checked="BubbleRadioButton_Checked"/>
             <RadioButton x:Name="TextRadioButton" Margin="0,17,0,0" Content="Text" Checked="TextRadioButton_Checked"/>
         </StackPanel>

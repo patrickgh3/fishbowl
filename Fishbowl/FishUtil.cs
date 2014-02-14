@@ -133,18 +133,52 @@ namespace Fishbowl
             return i;
         }
 
-        // http://www.switchonthecode.com/tutorials/javascript-interactive-color-picker
-
-        public static void PosToHsv(int x, int y, out double s, out double v)
+        // http://www.javascripter.net/faq/rgb2hsv.htm
+        public static void RgbToHsv(int ri, int gi, int bi, out double computedH, out double computedS, out double computedV)
         {
-            s = 1 - (double)y / 255.0;
-            v = (double)x / 255.0;
+            computedH = 0;
+            computedS = 0;
+            computedV = 0;
+
+            ri = Clamp(ri);
+            gi = Clamp(gi);
+            bi = Clamp(bi);
+
+            double r = (double)ri / 255;
+            double g = (double)gi / 255;
+            double b = (double)bi / 255;
+
+            double minRGB = Math.Min(r, Math.Min(g, b));
+            double maxRGB = Math.Max(r, Math.Max(g, b));
+
+            // Black-gray-white
+            if (minRGB == maxRGB)
+            {
+                computedV = minRGB;
+                return;
+            }
+
+            // Colors other than black-gray-white
+            double d = (r == minRGB) ? g - b : ((b == minRGB) ? r - g : b - r);
+            double h = (r == minRGB) ? 3 : ((b == minRGB) ? 1 : 5);
+            computedH = 60 * (h - d / (maxRGB - minRGB));
+            computedS = (maxRGB - minRGB) / maxRGB;
+            computedV = maxRGB;
+
         }
 
-        public static void HsvToPos(double s, double v, out int x, out int y)
+        // http://www.switchonthecode.com/tutorials/javascript-interactive-color-picker
+
+        public static void PosToHsv(double x, double y, out double s, out double v)
         {
-            x = (int)(v * 255);
-            y = (int)((1 - s) * 255);
+            s = 1 - y / 255.0;
+            v = x / 255.0;
+        }
+
+        public static void HsvToPos(double s, double v, out double x, out double y)
+        {
+            x = v * 255;
+            y = (1 - s) * 255;
         }
     }
 }
