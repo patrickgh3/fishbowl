@@ -25,6 +25,7 @@ namespace Fishbowl
     sealed partial class App : Application
     {
         public static Preferences preferences;
+        public static ColorSettings colorsettings;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -34,7 +35,6 @@ namespace Fishbowl
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            preferences = new Preferences();
         }
 
         /// <summary>
@@ -46,6 +46,8 @@ namespace Fishbowl
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+            preferences = new Preferences();
+            colorsettings = new ColorSettings();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -73,6 +75,7 @@ namespace Fishbowl
                     throw new Exception("Failed to create initial page");
                 }
                 preferences.SetControlsToDefaults();
+                colorsettings.SetControlsToDefaults();
             }
 
             // Ensure the current window is active
@@ -106,11 +109,18 @@ namespace Fishbowl
 
             args.Request.ApplicationCommands.Add(new SettingsCommand(
                 "Options", "Options", (handler) => ShowPreferencesFlyout()));
+            args.Request.ApplicationCommands.Add(new SettingsCommand(
+                "Colors", "Colors", (handler) => ShowColorSettingsFlyout()));
         }
 
         public void ShowPreferencesFlyout()
         {
             preferences.Show();
+        }
+
+        public void ShowColorSettingsFlyout()
+        {
+            colorsettings.Show();
         }
     }
 }

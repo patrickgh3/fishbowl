@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -114,6 +115,9 @@
     <Compile Include="BubbleContainer.cs" />
     <Compile Include="BubbleAttributes\BubbleContent.cs" />
     <Compile Include="BubbleAttributes\BubbleShape.cs" />
+    <Compile Include="ColorSettings.xaml.cs">
+      <DependentUpon>ColorSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DragController.cs" />
     <Compile Include="FishUtil.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -132,10 +136,16 @@
     <None Include="Fishbowl_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ColorSelectorHueGradient.png" />
+    <Content Include="Assets\ColorSelectorSatValGradient.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Page Include="ColorSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Preferences.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

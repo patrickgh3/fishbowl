@@ -1,0 +1,44 @@
+﻿<SettingsFlyout
+    x:Class="Fishbowl.ColorSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Fishbowl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Colors"
+    d:DesignWidth="346" PointerMoved="SettingsFlyout_PointerMoved">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+        <!-- Radio Buttons -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <RadioButton x:Name="BackgroundRadioButton" Margin="0,17,0,0" Content="Background" IsChecked="False" Checked="BackgroundRadioButton_Checked"/>
+            <RadioButton x:Name="BubbleRadioButton" Margin="0,17,0,0" Content="Bubble" Checked="BubbleRadioButton_Checked"/>
+            <RadioButton x:Name="TextRadioButton" Margin="0,17,0,0" Content="Text" Checked="TextRadioButton_Checked"/>
+        </StackPanel>
+
+        <!-- Hue Slider -->
+            <Slider x:Name="ColorSelectorHueSlider" Maximum="359" ValueChanged="ColorSelectorHueSlider_ValueChanged" Style="{StaticResource ColorSelectorHueSliderStyle}" Margin="-5,0" IsThumbToolTipEnabled="False"/>
+
+        <!-- Color Selector -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <Grid Height="256" Width="256">
+                <!-- Selector Square -->
+                <Rectangle x:Name="ColorSelectorHueRect" Width="256" Height="256" Fill="Red" />
+                <Rectangle Width="256" Height="256" PointerPressed="Selector_PointerPressed" Stroke="Black">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Assets/ColorSelectorSatValGradient.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Canvas x:Name="ColorSelectorCanvas" Width="256" Height="256">
+                    <Ellipse x:Name="ColorSelectorInnerEllipse" Height="19" Width="19" Stroke="#66FFFFFF" Canvas.Left="246" Canvas.Top="-10" PointerPressed="Selector_PointerPressed" StrokeThickness="1.25"/>
+                    <Ellipse x:Name="ColorSelectorEllipse" Height="20" Width="20" Stroke="Black" Canvas.Left="246" Canvas.Top="-10" PointerPressed="Selector_PointerPressed"/>
+                </Canvas>
+            </Grid>
+
+        </StackPanel>
+
+    </StackPanel>
+</SettingsFlyout>

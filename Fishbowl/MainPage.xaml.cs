@@ -32,6 +32,7 @@ namespace Fishbowl
             BubbleContainer.canvas = BubbleCanvas;
             currentContainer = new BubbleContainer();
             dragController = new DragController();
+            Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
 
             // Create a periodic work schedule - every 1 millisecond update all the bubbles.
             // http://msdn.microsoft.com/en-US/library/windows/apps/jj248676
@@ -92,6 +93,11 @@ namespace Fishbowl
         private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             dragController.Released();
+        }
+
+        void CoreWindow_PointerReleased(CoreWindow sender, PointerEventArgs args)
+        {
+            App.colorsettings.MainPagePointerReleased();
         }
     }
 }
