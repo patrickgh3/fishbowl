@@ -27,7 +27,7 @@
             <Grid Height="256" Width="256">
                 <!-- Selector Square -->
                 <Rectangle x:Name="ColorSelectorHueRect" Width="256" Height="256" Fill="Red" />
-                <Rectangle Width="256" Height="256" PointerPressed="Selector_PointerPressed">
+                <Rectangle Width="256" Height="256" PointerPressed="Selector_PointerPressed" Stroke="Black">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="Assets/ColorSelectorSatValGradient.png"/>
                     </Rectangle.Fill>
