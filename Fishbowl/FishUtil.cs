@@ -171,14 +171,14 @@ namespace Fishbowl
 
         public static void PosToHsv(double x, double y, out double s, out double v)
         {
-            s = 1 - y / 255.0;
-            v = x / 255.0;
+            s = 1 - x / 255;
+            v = 1 - y / 255;
         }
 
         public static void HsvToPos(double s, double v, out double x, out double y)
         {
-            x = v * 255;
-            y = (1 - s) * 255;
+            x = (1 - s) * 255;
+            y = (1 - v) * 255;
         }
     }
 }
