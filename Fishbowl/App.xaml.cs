@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ApplicationSettings;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -23,6 +24,8 @@ namespace Fishbowl
     /// </summary>
     sealed partial class App : Application
     {
+        public static Preferences preferences;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -31,6 +34,7 @@ namespace Fishbowl
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            preferences = new Preferences();
         }
 
         /// <summary>
@@ -68,6 +72,7 @@ namespace Fishbowl
                 {
                     throw new Exception("Failed to create initial page");
                 }
+                preferences.SetControlsToDefaults();
             }
 
             // Ensure the current window is active
@@ -86,6 +91,26 @@ namespace Fishbowl
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        // Custom settings flyout
+        // http://msdn.microsoft.com/en-us/library/windows/apps/hh872190.aspx
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
+        }
+
+        private void OnCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+
+            args.Request.ApplicationCommands.Add(new SettingsCommand(
+                "Options", "Options", (handler) => ShowPreferencesFlyout()));
+        }
+
+        public void ShowPreferencesFlyout()
+        {
+            preferences.Show();
         }
     }
 }

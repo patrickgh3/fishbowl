@@ -31,6 +31,7 @@ namespace Fishbowl.BubbleAttributes
                 Foreground = new SolidColorBrush(Colors.Black),
                 TextAlignment = Windows.UI.Xaml.TextAlignment.Center,
                 FontSize = 32,
+                FontFamily = Preferences.FontFamily,
                 Width = radius * 2,
                 MaxHeight = radius * 2,
                 TextWrapping = TextWrapping.WrapWholeWords,
@@ -51,6 +52,7 @@ namespace Fishbowl.BubbleAttributes
             // TODO: update TextBlock and Border sizes, font size, font family, text color, etc.
             // based on global state (e.g. custom bubble collor setting),
             // and parent state (e.g. what's the current radius at?).
+            textblock.FontFamily = Preferences.FontFamily;
         }
 
         public void UpdateCanvasPos()

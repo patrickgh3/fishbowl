@@ -1,0 +1,34 @@
+﻿<SettingsFlyout
+    x:Class="Fishbowl.Preferences"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Fishbowl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Options"
+    d:DesignWidth="346">
+
+    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+        <!-- The StackPanel(s) below define individual content sections -->
+        
+        <!-- Push strength Slider -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Repulsion Strength" Style="{StaticResource TitleTextBlockStyle}"/>
+            <Slider x:Name="PushStrengthSlider" ValueChanged="PushStrengthSlider_ValueChanged" Maximum="1" SmallChange="0.01" StepFrequency="0.01" LargeChange="0.1" Foreground="#004917B4"/>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Font Family" Style="{StaticResource TitleTextBlockStyle}"/>
+            <ComboBox x:Name="FontFamilyComboBox" Margin="0,7,0,0" HorizontalAlignment="Left" SelectionChanged="FontFamilyComboBox_SelectionChanged" SelectedIndex="-1">
+                <ComboBoxItem Content="Sans-Serif"/>
+                <ComboBoxItem Content="Serif"/>
+                <ComboBoxItem Content="Monospaced"/>
+            </ComboBox>
+        </StackPanel>
+
+    </StackPanel>
+</SettingsFlyout>
