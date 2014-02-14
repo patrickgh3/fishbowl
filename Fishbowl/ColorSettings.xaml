@@ -23,7 +23,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
                 <Canvas x:Name="ColorSelectorCanvas" Width="256" Height="256">
-                    <Ellipse x:Name="ColorSelectorEllipse" Height="30" Width="30" Stroke="Black" Canvas.Left="241" Canvas.Top="-15"/>
+                    <Ellipse x:Name="ColorSelectorEllipse" Height="20" Width="20" Stroke="Black" Canvas.Left="246" Canvas.Top="-10"/>
                 </Canvas>
             </Grid>
             <!-- Hue Slider -->
