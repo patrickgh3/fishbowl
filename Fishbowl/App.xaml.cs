@@ -105,7 +105,7 @@ namespace Fishbowl
         {
 
             args.Request.ApplicationCommands.Add(new SettingsCommand(
-                "Preferences", "Preferences", (handler) => ShowPreferencesFlyout()));
+                "Options", "Options", (handler) => ShowPreferencesFlyout()));
         }
 
         public void ShowPreferencesFlyout()

@@ -37,7 +37,7 @@ namespace Fishbowl
         public void SetControlsToDefaults()
         {
             PushStrengthSlider.Value = 0.45;
-            FontFamilyComboBox.SelectedItem = "Serif";
+            FontFamilyComboBox.SelectedIndex = 0;
         }
 
         private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

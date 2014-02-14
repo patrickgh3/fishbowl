@@ -7,41 +7,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
-    Title="Preferences"
+    Title="Options"
     d:DesignWidth="346">
 
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
         <!-- The StackPanel(s) below define individual content sections -->
-
-        <!-- Content Section 1-->
+        
+        <!-- Push strength Slider -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-
-            <!-- Section 1 header -->
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Lorem ipsum" />
-
-            <!-- Section 1 body -->
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
-                <TextBlock.Text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </TextBlock.Text>
-            </TextBlock>
-
-        </StackPanel>
-
-        <!-- Define more Content Sections below as necessary -->
-        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <TextBlock Text="TextBox" Style="{StaticResource TitleTextBlockStyle}"/>
-            <TextBlock Margin="0,0,0,25" Text="Use a TextBox to allow users to enter text." Style="{StaticResource BodyTextBlockStyle}"/>
+            <TextBlock Text="Repulsion Strength" Style="{StaticResource TitleTextBlockStyle}"/>
             <Slider x:Name="PushStrengthSlider" ValueChanged="PushStrengthSlider_ValueChanged" Maximum="1" SmallChange="0.01" StepFrequency="0.01" LargeChange="0.1" Foreground="#004917B4"/>
         </StackPanel>
 
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <TextBlock Text="ComboBox" Style="{StaticResource TitleTextBlockStyle}"/>
-            <TextBlock Margin="0,0,0,25" Text="Use the ComboBox to allow users to select one item from a set of text-only items." Style="{StaticResource BodyTextBlockStyle}"/>
-            <ComboBox x:Name="FontFamilyComboBox" Header="Font family:" Margin="0,7,0,0" HorizontalAlignment="Left" SelectionChanged="FontFamilyComboBox_SelectionChanged">
+            <TextBlock Text="Font Family" Style="{StaticResource TitleTextBlockStyle}"/>
+            <ComboBox x:Name="FontFamilyComboBox" Margin="0,7,0,0" HorizontalAlignment="Left" SelectionChanged="FontFamilyComboBox_SelectionChanged" SelectedIndex="-1">
                 <ComboBoxItem Content="Sans-Serif"/>
                 <ComboBoxItem Content="Serif"/>
                 <ComboBoxItem Content="Monospaced"/>
