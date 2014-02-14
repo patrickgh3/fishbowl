@@ -18,5 +18,12 @@ namespace Fishbowl
             return (bubblepos.x - point.X) * (bubblepos.x - point.X) + (bubblepos.y - point.Y) * (bubblepos.y - point.Y)
                 < bubble.getRadius() * bubble.getRadius();
         }
+
+        public static double ClampDouble(double n, double low, double high)
+        {
+            if (n < low) n = low;
+            if (n > high) n = high;
+            return n;
+        }
     }
 }

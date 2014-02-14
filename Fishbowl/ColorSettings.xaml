@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="Colors"
-    d:DesignWidth="346">
+    d:DesignWidth="346" PointerMoved="SettingsFlyout_PointerMoved" PointerExited="SettingsFlyout_PointerExited" PointerEntered="SettingsFlyout_PointerEntered">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
@@ -17,7 +17,7 @@
             <Grid Height="256" Width="256">
                 <!-- Selector Square -->
                 <Rectangle x:Name="ColorSelectorHueRect" Width="256" Height="256" Fill="Red" />
-                <Rectangle Width="256" Height="256">
+                <Rectangle Width="256" Height="256" PointerPressed="Rectangle_PointerPressed" PointerReleased="Rectangle_PointerReleased">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="Assets/ColorSelectorGradient.png"/>
                     </Rectangle.Fill>
