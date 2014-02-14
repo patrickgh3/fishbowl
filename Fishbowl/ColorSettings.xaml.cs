@@ -95,6 +95,8 @@ namespace Fishbowl
             p = new Point(FishUtil.ClampDouble(p.X, 0, 256), FishUtil.ClampDouble(p.Y, 0, 256));
             Canvas.SetLeft(ColorSelectorEllipse, p.X - ColorSelectorEllipse.Width / 2);
             Canvas.SetTop(ColorSelectorEllipse, p.Y - ColorSelectorEllipse.Height / 2);
+            Canvas.SetLeft(ColorSelectorInnerEllipse, p.X - ColorSelectorInnerEllipse.Width / 2);
+            Canvas.SetTop(ColorSelectorInnerEllipse, p.Y - ColorSelectorInnerEllipse.Height / 2);
 
             FishUtil.PosToHsv((int)p.X, (int)p.Y, out sat, out val);
             UpdateColor();

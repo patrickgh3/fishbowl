@@ -30,6 +30,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
                 <Canvas x:Name="ColorSelectorCanvas" Width="256" Height="256">
+                    <Ellipse x:Name="ColorSelectorInnerEllipse" Height="19" Width="19" Stroke="#66FFFFFF" Canvas.Left="246" Canvas.Top="-10" PointerPressed="Selector_PointerPressed" StrokeThickness="1.25"/>
                     <Ellipse x:Name="ColorSelectorEllipse" Height="20" Width="20" Stroke="Black" Canvas.Left="246" Canvas.Top="-10" PointerPressed="Selector_PointerPressed"/>
                 </Canvas>
             </Grid>
