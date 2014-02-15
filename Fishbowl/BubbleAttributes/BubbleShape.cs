@@ -34,8 +34,6 @@ namespace Fishbowl.BubbleAttributes
 
         public void UpdateAppearance()
         {
-            // TODO: update based on parent state (e.g. parent radius)
-            // and global state (e.g. custom bubble color)
             ((SolidColorBrush)shape.Fill).Color = ColorSettings.BubbleColor;
             shape.Width = parent.getRadius() * 2;
             shape.Height = parent.getRadius() * 2;

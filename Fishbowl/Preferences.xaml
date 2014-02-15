@@ -19,6 +19,13 @@
             <Slider x:Name="BubbleSizeSlider"  Minimum="1" Maximum="200" ValueChanged="BubbleSizeSlider_ValueChanged"/>
         </StackPanel>
 
+        <!-- Text size -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Text Size" Style="{StaticResource TitleTextBlockStyle}"/>
+            <ToggleSwitch x:Name="TextSizeToggleSwitch" Margin="-6,0,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Toggled="TextSizeToggleSwitch_Toggled" OffContent="Auto" OnContent="Custom"/>
+            <Slider x:Name="TextSizeSlider"  Minimum="1" Maximum="200" ValueChanged="TextSizeSlider_ValueChanged"/>
+        </StackPanel>
+
         <!-- Push strength Slider -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
             <TextBlock Text="Repulsion Strength" Style="{StaticResource TitleTextBlockStyle}"/>

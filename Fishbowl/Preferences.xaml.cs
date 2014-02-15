@@ -22,6 +22,8 @@ namespace Fishbowl
         public static FontFamily FontFamily = new FontFamily("Segoe UI");
         public static bool BubbleAutoSize = true;
         public static double BubbleRadius;
+        public static bool TextAutoSize = true;
+        public static double FontSize;
         private static Preferences instance;
 
         public static Preferences getInstance()
@@ -39,8 +41,14 @@ namespace Fishbowl
         {
             PushStrengthSlider.Value = 0.45;
             FontFamilyComboBox.SelectedIndex = 0;
-            BubbleSizeSlider.Value = 100;
             BubbleSizeSlider.IsEnabled = false;
+            TextSizeSlider.IsEnabled = false;
+        }
+
+        private void UpdateBubbleAppearance()
+        {
+            BubbleContainer container = MainPage.getCurrentContainer();
+            if (container != null) container.UpdateBubbleAppearance();
         }
 
         // push strength
@@ -61,16 +69,10 @@ namespace Fishbowl
             else if (FontFamilyComboBox.SelectedIndex == 1) FontFamily = new FontFamily("Times New Roman");
             else if (FontFamilyComboBox.SelectedIndex == 2) FontFamily = new FontFamily("Consolas");
 
-            MainPage.getCurrentContainer().UpdateBubbleAppearance();
+            UpdateBubbleAppearance();
         }
 
         // bubble size
-
-        private void BubbleSizeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            BubbleRadius = e.NewValue; // BubbleSizeSlider is null for some reason on startup at this point
-            UpdateBubbles();
-        }
 
         private void BubbleSizeToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
@@ -79,19 +81,42 @@ namespace Fishbowl
             if (BubbleAutoSize) AutoSizeBubbleRadius();
         }
 
+        private void BubbleSizeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            BubbleRadius = e.NewValue; // BubbleSizeSlider is null for some reason on startup at this point
+            UpdateBubbleAppearance();
+            if ((TextSizeSlider != null) && TextAutoSize) AutoSizeText();
+        }
+
         public void AutoSizeBubbleRadius()
         {
             if (MainPage.getCurrentContainer() == null || MainPage.getCurrentContainer().getNumBubbles() == 0) return;
             Rect bounds = Window.Current.Bounds;
             double numbubbles = (double)MainPage.getCurrentContainer().getNumBubbles();
-            double radius = Math.Sqrt((bounds.Width * bounds.Height) / (Math.PI * numbubbles)) / 2.25;
-            radius = FishUtil.ClampDouble(radius, 20, Math.Sqrt((bounds.Width * bounds.Height) / Math.PI) / 5.25);
+            double radius = Math.Sqrt((bounds.Width * bounds.Height) / (Math.PI * numbubbles)) / 2;
+            radius = FishUtil.ClampDouble(radius, 20, Math.Sqrt((bounds.Width * bounds.Height) / Math.PI) / 4);
             BubbleSizeSlider.Value = radius;
         }
 
-        private void UpdateBubbles()
+        // text size
+
+        private void TextSizeToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            if (MainPage.getCurrentContainer() != null) MainPage.getCurrentContainer().UpdateBubbleAppearance();
+            TextAutoSize = !TextSizeToggleSwitch.IsOn;
+            TextSizeSlider.IsEnabled = TextSizeToggleSwitch.IsOn;
+            if (TextAutoSize) AutoSizeText();
+        }
+
+        private void TextSizeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            FontSize = e.NewValue;
+            System.Diagnostics.Debug.WriteLine(FontSize);
+            UpdateBubbleAppearance();
+        }
+
+        public void AutoSizeText()
+        {
+            TextSizeSlider.Value = BubbleRadius * (32.0 / 100.0);
         }
     }
 }
