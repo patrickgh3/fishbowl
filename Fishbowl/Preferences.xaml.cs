@@ -20,16 +20,27 @@ namespace Fishbowl
     public sealed partial class Preferences : SettingsFlyout
     {
         public static FontFamily FontFamily = new FontFamily("Segoe UI");
+        public static bool BubbleAutoSize = true;
+        public static double BubbleRadius;
+        private static Preferences instance;
+
+        public static Preferences getInstance()
+        {
+            return instance;
+        }
 
         public Preferences()
         {
             this.InitializeComponent();
+            instance = this;
         }
 
         public void SetControlsToDefaults()
         {
             PushStrengthSlider.Value = 0.45;
             FontFamilyComboBox.SelectedIndex = 0;
+            BubbleSizeSlider.Value = 100;
+            BubbleSizeSlider.IsEnabled = false;
         }
 
         // push strength
@@ -57,12 +68,28 @@ namespace Fishbowl
 
         private void BubbleSizeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-
+            BubbleRadius = e.NewValue; // BubbleSizeSlider is null for some reason on startup at this point
+            UpdateBubbles();
         }
 
         private void BubbleSizeToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            BubbleAutoSize = !BubbleSizeToggleSwitch.IsOn;
+            BubbleSizeSlider.IsEnabled = BubbleSizeToggleSwitch.IsOn;
+            if (BubbleAutoSize) AutoSizeBubbleRadius();
+        }
 
+        public void AutoSizeBubbleRadius()
+        {
+            if (MainPage.getCurrentContainer() == null || MainPage.getCurrentContainer().getNumBubbles() == 0) return;
+            Rect bounds = Window.Current.Bounds;
+            double numbubbles = (double)MainPage.getCurrentContainer().getNumBubbles();
+            BubbleSizeSlider.Value = Math.Sqrt((bounds.Width * bounds.Height) / (Math.PI * numbubbles)) / 2.5;
+        }
+
+        private void UpdateBubbles()
+        {
+            if (MainPage.getCurrentContainer() != null) MainPage.getCurrentContainer().UpdateBubbleAppearance();
         }
     }
 }

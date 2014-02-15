@@ -54,6 +54,8 @@ namespace Fishbowl.BubbleAttributes
             // and parent state (e.g. what's the current radius at?).
             textblock.FontFamily = Preferences.FontFamily;
             ((SolidColorBrush)textblock.Foreground).Color = ColorSettings.TextColor;
+            textblock.Width = parent.getRadius() * 2;
+            textblock.MaxHeight = textcontainer.Height = parent.getRadius() * 2;
         }
 
         public void UpdateCanvasPos()

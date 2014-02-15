@@ -19,7 +19,6 @@ namespace Fishbowl
     /// </summary>
     class Bubble
     {
-        protected static double stdRadius = 100;
         public static double pushStrength;
 
         protected BubbleShape shape;
@@ -34,7 +33,7 @@ namespace Fishbowl
         {
             position = new Point();
             velocity = new Point();
-            radius = stdRadius;
+            radius = Preferences.BubbleRadius;
             shape = new BubbleShape(this);
             content = new BubbleContent(this, text);
             tick();
@@ -83,6 +82,7 @@ namespace Fishbowl
 
         public void UpdateAppearance()
         {
+            radius = Preferences.BubbleRadius;
             shape.UpdateAppearance();
             content.UpdateAppearance();
         }
