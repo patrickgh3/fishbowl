@@ -84,7 +84,9 @@ namespace Fishbowl
             if (MainPage.getCurrentContainer() == null || MainPage.getCurrentContainer().getNumBubbles() == 0) return;
             Rect bounds = Window.Current.Bounds;
             double numbubbles = (double)MainPage.getCurrentContainer().getNumBubbles();
-            BubbleSizeSlider.Value = Math.Sqrt((bounds.Width * bounds.Height) / (Math.PI * numbubbles)) / 2.5;
+            double radius = Math.Sqrt((bounds.Width * bounds.Height) / (Math.PI * numbubbles)) / 2.25;
+            radius = FishUtil.ClampDouble(radius, 20, Math.Sqrt((bounds.Width * bounds.Height) / Math.PI) / 5.25);
+            BubbleSizeSlider.Value = radius;
         }
 
         private void UpdateBubbles()
