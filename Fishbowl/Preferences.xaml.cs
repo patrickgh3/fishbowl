@@ -41,8 +41,10 @@ namespace Fishbowl
         {
             PushStrengthSlider.Value = 0.45;
             FontFamilyComboBox.SelectedIndex = 0;
-            BubbleSizeSlider.IsEnabled = false;
-            TextSizeSlider.IsEnabled = false;
+            BubbleSizeToggleSwitch.IsOn = true;
+            BubbleSizeToggleSwitch.IsOn = false;
+            TextSizeToggleSwitch.IsOn = true;
+            TextSizeToggleSwitch.IsOn = false;
         }
 
         private void UpdateBubbleAppearance()
@@ -78,6 +80,8 @@ namespace Fishbowl
         {
             BubbleAutoSize = !BubbleSizeToggleSwitch.IsOn;
             BubbleSizeSlider.IsEnabled = BubbleSizeToggleSwitch.IsOn;
+            if (BubbleSizeToggleSwitch.IsOn) showBubbleSizeSlider.Begin();
+            else hideBubbleSizeSlider.Begin();
             if (BubbleAutoSize) AutoSizeBubbleRadius();
         }
 
@@ -104,13 +108,14 @@ namespace Fishbowl
         {
             TextAutoSize = !TextSizeToggleSwitch.IsOn;
             TextSizeSlider.IsEnabled = TextSizeToggleSwitch.IsOn;
+            if (TextSizeToggleSwitch.IsOn) showTextSizeSlider.Begin();
+            else hideTextSizeSlider.Begin();
             if (TextAutoSize) AutoSizeText();
         }
 
         private void TextSizeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             FontSize = e.NewValue;
-            System.Diagnostics.Debug.WriteLine(FontSize);
             UpdateBubbleAppearance();
         }
 
