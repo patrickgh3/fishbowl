@@ -10,17 +10,101 @@
     Title="Options"
     d:DesignWidth="346">
 
-    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
-        <!-- The StackPanel(s) below define individual content sections -->
-        
+        <!-- Bubble size -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Bubble Size" Style="{StaticResource TitleTextBlockStyle}"/>
+            <ToggleSwitch x:Name="BubbleSizeToggleSwitch" Margin="-6,0,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Toggled="BubbleSizeToggleSwitch_Toggled" OffContent="Auto" OnContent="Custom"/>
+            <!-- Slider stack panel -->
+            <StackPanel x:Name="BubbleSizeSliderStackPanel">
+                <StackPanel.RenderTransform>
+                    <TranslateTransform x:Name="BubbleSizeSliderStackPanelTransform" />
+                </StackPanel.RenderTransform>
+                <StackPanel.Resources>
+                    <!-- Show animation -->
+                    <Storyboard x:Name="showBubbleSizeSlider">
+                        <DoubleAnimation Storyboard.TargetName="BubbleSizeSliderStackPanel" Storyboard.TargetProperty="Height" From="0" To="60" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="BubbleSizeSliderStackPanelTransform" Storyboard.TargetProperty="Y" From="-60" To="0" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <FadeInThemeAnimation TargetName="BubbleSizeSliderStackPanel"/>
+                    </Storyboard>
+                    <!-- hide animation -->
+                    <Storyboard x:Name="hideBubbleSizeSlider">
+                        <DoubleAnimation Storyboard.TargetName="BubbleSizeSliderStackPanel" Storyboard.TargetProperty="Height" From="60" To="0" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="BubbleSizeSliderStackPanelTransform" Storyboard.TargetProperty="Y" From="0" To="-60" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <FadeOutThemeAnimation TargetName="BubbleSizeSliderStackPanel"/>
+                    </Storyboard>
+                </StackPanel.Resources>
+                <Slider x:Name="BubbleSizeSlider"  Minimum="1" Maximum="200" ValueChanged="BubbleSizeSlider_ValueChanged"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Text size -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Text Size" Style="{StaticResource TitleTextBlockStyle}"/>
+            <ToggleSwitch x:Name="TextSizeToggleSwitch" Margin="-6,0,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Toggled="TextSizeToggleSwitch_Toggled" OffContent="Auto" OnContent="Custom"/>
+            <!-- Slider stack panel -->
+            <StackPanel x:Name="TextSizeSliderStackPanel">
+                <StackPanel.RenderTransform>
+                    <TranslateTransform x:Name="TextSizeSliderStackPanelTransform" />
+                </StackPanel.RenderTransform>
+                <StackPanel.Resources>
+                    <!-- Show animation -->
+                    <Storyboard x:Name="showTextSizeSlider">
+                        <DoubleAnimation Storyboard.TargetName="TextSizeSliderStackPanel" Storyboard.TargetProperty="Height" From="0" To="60" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="TextSizeSliderStackPanelTransform" Storyboard.TargetProperty="Y" From="-60" To="0" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <FadeInThemeAnimation TargetName="TextSizeSliderStackPanel"/>
+                    </Storyboard>
+                    <!-- hide animation -->
+                    <Storyboard x:Name="hideTextSizeSlider">
+                        <DoubleAnimation Storyboard.TargetName="TextSizeSliderStackPanel" Storyboard.TargetProperty="Height" From="60" To="0" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="TextSizeSliderStackPanelTransform" Storyboard.TargetProperty="Y" From="0" To="-60" Duration="0:0:0.5" EnableDependentAnimation="True">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <FadeOutThemeAnimation TargetName="TextSizeSliderStackPanel"/>
+                    </Storyboard>
+                </StackPanel.Resources>
+                <Slider x:Name="TextSizeSlider"  Minimum="1" Maximum="200" ValueChanged="TextSizeSlider_ValueChanged"/>
+            </StackPanel>
+        </StackPanel>
+
         <!-- Push strength Slider -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
             <TextBlock Text="Repulsion Strength" Style="{StaticResource TitleTextBlockStyle}"/>
-            <Slider x:Name="PushStrengthSlider" ValueChanged="PushStrengthSlider_ValueChanged" Maximum="1" SmallChange="0.01" StepFrequency="0.01" LargeChange="0.1" Foreground="#004917B4"/>
+            <Slider x:Name="PushStrengthSlider" ValueChanged="PushStrengthSlider_ValueChanged" Maximum="1" SmallChange="0.01" StepFrequency="0.01" LargeChange="0.1"/>
         </StackPanel>
 
+        <!-- Font family ComboBox -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
             <TextBlock Text="Font Family" Style="{StaticResource TitleTextBlockStyle}"/>
             <ComboBox x:Name="FontFamilyComboBox" Margin="0,7,0,0" HorizontalAlignment="Left" SelectionChanged="FontFamilyComboBox_SelectionChanged" SelectedIndex="-1">
