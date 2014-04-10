@@ -33,6 +33,7 @@ namespace Fishbowl
             currentContainer = new BubbleContainer();
             dragController = new DragController();
             Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
+            Window.Current.CoreWindow.SizeChanged +=CoreWindow_SizeChanged;
 
             // Create a periodic work schedule - every 1 millisecond update all the bubbles.
             // http://msdn.microsoft.com/en-US/library/windows/apps/jj248676
@@ -95,9 +96,14 @@ namespace Fishbowl
             dragController.Released();
         }
 
-        void CoreWindow_PointerReleased(CoreWindow sender, PointerEventArgs args)
+        private void CoreWindow_PointerReleased(CoreWindow sender, PointerEventArgs args)
         {
             App.colorsettings.MainPagePointerReleased();
+        }
+
+        private void CoreWindow_SizeChanged(CoreWindow sender, WindowSizeChangedEventArgs args)
+        {
+            if (Preferences.BubbleAutoSize) Preferences.getInstance().AutoSizeBubbleRadius();
         }
     }
 }

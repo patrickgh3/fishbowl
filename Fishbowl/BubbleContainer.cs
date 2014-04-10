@@ -46,14 +46,7 @@ namespace Fishbowl
             bubbles.Add(b);
             Rect bounds = Window.Current.Bounds;
             b.setPosition(FishUtil.random.NextDouble() * bounds.Width, FishUtil.random.NextDouble() * bounds.Height);
-        }
-
-        public void addRandomBubble()
-        {
-            Bubble b = new SwimBubble();
-            bubbles.Add(b);
-            Rect bounds = Window.Current.Bounds;
-            b.setPosition(FishUtil.random.NextDouble() * bounds.Width, FishUtil.random.NextDouble() * bounds.Height);
+            if (Preferences.BubbleAutoSize) Preferences.getInstance().AutoSizeBubbleRadius();
         }
 
         public Bubble catchBubble(Point p)
@@ -71,6 +64,11 @@ namespace Fishbowl
             {
                 bubbles[i].UpdateAppearance();
             }
+        }
+
+        public int getNumBubbles()
+        {
+            return bubbles.Count;
         }
     }
 }
