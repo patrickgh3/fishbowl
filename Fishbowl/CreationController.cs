@@ -27,10 +27,10 @@ namespace Fishbowl
         public void createBubble(Point p, BubbleContainer bc)
         {
             
-            bubble = bc.addBubble("type here!");
+            bubble = bc.addBubble("");
             bubble.setPosition(p.X, p.Y);
             bubble.setDragged(true);
-            // todo: set bubble to blink
+            bubble.getContent().setFlashing(true);
             textBox.Focus(FocusState.Keyboard);
             active = true;
         }
@@ -38,6 +38,7 @@ namespace Fishbowl
         public void relinquishBubble()
         {
             bubble.setDragged(false);
+            bubble.getContent().setFlashing(false);
             // todo: maybe launch bubble, or another visual cue?\
             //textBox.Focus(FocusState.Unfocused);
             active = false;
@@ -46,7 +47,7 @@ namespace Fishbowl
 
         public void UpdateBubbleText()
         {
-            if (active) bubble.setContentText(textBox.Text);
+            if (active) bubble.getContent().setText(textBox.Text);
         }
 
         public bool isActive()

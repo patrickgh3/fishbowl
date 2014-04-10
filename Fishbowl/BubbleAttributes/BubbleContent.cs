@@ -20,6 +20,10 @@ namespace Fishbowl.BubbleAttributes
         private Bubble parent;
         private TextBlock textblock;
         private Border textcontainer;
+        bool flashing = false;
+        bool flashState = false;
+        private static int flashTime = 400;
+        private static int flashCount = 0;
 
         public BubbleContent(Bubble parent, string text = "")
         {
@@ -47,6 +51,21 @@ namespace Fishbowl.BubbleAttributes
             Canvas.SetZIndex(textcontainer, Int16.MaxValue);
         }
 
+        public void tick()
+        {
+            if (!flashing) return;
+
+            flashCount++;
+            if (flashCount == flashTime)
+            {
+                flashCount = 0;
+                flashState = !flashState;
+                if (flashState) addPipe();
+                else if (!flashState) removePipe();
+            }
+            UpdateAppearance();
+        }
+
         public void UpdateAppearance()
         {
             ((SolidColorBrush)textblock.Foreground).Color = ColorSettings.TextColor;
@@ -64,9 +83,35 @@ namespace Fishbowl.BubbleAttributes
             Canvas.SetTop(textcontainer, parent.getPosition().y - parent.getRadius());
         }
 
-        public void SetText(String s)
+        public void setText(String s)
         {
             textblock.Text = s;
+            if (flashState) addPipe();
+        }
+
+        private void addPipe()
+        {
+            textblock.Text += "|";
+        }
+
+        private void removePipe()
+        {
+            textblock.Text = textblock.Text.Substring(0, textblock.Text.Length - 1);
+        }
+
+        public void setFlashing(bool b)
+        {
+            if (flashState && !b)
+            {
+                removePipe();
+            }
+
+            flashing = b;
+            if (flashing)
+            {
+                flashCount = flashTime - 1;
+                flashState = false;
+            }
         }
     }
 }

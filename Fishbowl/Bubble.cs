@@ -41,6 +41,7 @@ namespace Fishbowl
 
         public virtual void tick()
         {
+            content.tick();
             if (beingdragged) return;
 
             position.x += velocity.x;
@@ -122,10 +123,9 @@ namespace Fishbowl
             return radius;
         }
 
-        public void setContentText(String s)
+        public BubbleContent getContent()
         {
-            content.SetText(s);
-            UpdateAppearance();
+            return content;
         }
 
         public struct Point
