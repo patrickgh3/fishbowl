@@ -25,6 +25,7 @@ namespace Fishbowl
     {
         static BubbleContainer currentContainer;
         static DragController dragController;
+        static CreationController creationController;
 
         public MainPage()
         {
@@ -32,6 +33,7 @@ namespace Fishbowl
             BubbleContainer.canvas = BubbleCanvas;
             currentContainer = new BubbleContainer();
             dragController = new DragController();
+            creationController = new CreationController(CreationTextBox);
             Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
             Window.Current.CoreWindow.SizeChanged +=CoreWindow_SizeChanged;
 
@@ -64,21 +66,26 @@ namespace Fishbowl
             return currentContainer;
         }
 
-        private void AddOkButton_Click(object sender, RoutedEventArgs e)
-        {
-            currentContainer.addBubble(AddTextBox.Text);
-            AddTextBox.Text = "";
-            AddFlyout.Hide();
-        }
-
-        private void AddTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == Windows.System.VirtualKey.Enter) AddOkButton_Click(null, null);
-        }
-
         private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            dragController.Pressed(e.GetCurrentPoint(BubbleCanvas).Position, currentContainer);
+            if (creationController.isActive())
+            {
+                creationController.relinquishBubble();
+            }
+
+            if (!creationController.isActive())
+            {
+                dragController.Pressed(e.GetCurrentPoint(BubbleCanvas).Position, currentContainer);
+            }
+            /*Point p = e.GetCurrentPoint(BubbleCanvas).Position;
+            if (currentContainer.catchBubble(p) != null)
+            {
+                dragController.Pressed(p, currentContainer);
+            }
+            else
+            {
+
+            }*/
         }
 
         private void Grid_PointerMoved(object sender, PointerRoutedEventArgs e)
@@ -104,6 +111,26 @@ namespace Fishbowl
         private void CoreWindow_SizeChanged(CoreWindow sender, WindowSizeChangedEventArgs args)
         {
             if (Preferences.BubbleAutoSize) Preferences.getInstance().AutoSizeBubbleRadius();
+        }
+
+        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Point p = e.GetPosition(BubbleCanvas);
+            if (currentContainer.catchBubble(p) == null && !creationController.isActive())
+            {
+                creationController.createBubble(p, currentContainer);
+            }
+        }
+
+        private void CreationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            creationController.UpdateBubbleText();
+        }
+
+        private void CreationTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter
+                && creationController.isActive()) creationController.relinquishBubble();
         }
     }
 }

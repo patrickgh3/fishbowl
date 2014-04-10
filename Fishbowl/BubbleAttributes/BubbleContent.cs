@@ -63,5 +63,10 @@ namespace Fishbowl.BubbleAttributes
             Canvas.SetLeft(textcontainer, parent.getPosition().x - parent.getRadius());
             Canvas.SetTop(textcontainer, parent.getPosition().y - parent.getRadius());
         }
+
+        public void SetText(String s)
+        {
+            textblock.Text = s;
+        }
     }
 }

@@ -122,6 +122,12 @@ namespace Fishbowl
             return radius;
         }
 
+        public void setContentText(String s)
+        {
+            content.SetText(s);
+            UpdateAppearance();
+        }
+
         public struct Point
         {
             public double x;

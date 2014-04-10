@@ -115,6 +115,7 @@
     <Compile Include="BubbleContainer.cs" />
     <Compile Include="BubbleAttributes\BubbleContent.cs" />
     <Compile Include="BubbleAttributes\BubbleShape.cs" />
+    <Compile Include="CreationController.cs" />
     <Compile Include="ColorSettings.xaml.cs">
       <DependentUpon>ColorSettings.xaml</DependentUpon>
     </Compile>

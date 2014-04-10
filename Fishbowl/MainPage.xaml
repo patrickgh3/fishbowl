@@ -7,17 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" PointerMoved="Grid_PointerMoved" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased" PointerExited="Grid_PointerExited">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" PointerMoved="Grid_PointerMoved" PointerPressed="Grid_PointerPressed" PointerReleased="Grid_PointerReleased" PointerExited="Grid_PointerExited" Tapped="Grid_Tapped">
         <Canvas x:Name="BubbleCanvas" Background="#FFAAAAAA"/>
-        <Button x:Name="AddButton" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource AddAppBarButtonStyle}">
-            <Button.Flyout>
-                <Flyout x:Name="AddFlyout" Placement="Bottom">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="AddTextBox" TextWrapping="Wrap" Width="150" KeyDown="AddTextBox_KeyDown"/>
-                        <Button x:Name="AddOkButton" Content="Ok" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="10,0,0,0" Click="AddOkButton_Click"/>
-                    </StackPanel>
-                </Flyout>
-            </Button.Flyout>
-        </Button>
+        <TextBox x:Name="CreationTextBox" Margin="-100,-100,0,0" TextChanged="CreationTextBox_TextChanged" Width="75" Height="75" HorizontalAlignment="Left" VerticalAlignment="Top" KeyDown="CreationTextBox_KeyDown" />
     </Grid>
 </Page>

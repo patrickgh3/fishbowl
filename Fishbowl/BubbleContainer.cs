@@ -40,13 +40,14 @@ namespace Fishbowl
             }
         }
 
-        public void addBubble(String t)
+        public Bubble addBubble(String t)
         {
             Bubble b = new SwimBubble(t);
             bubbles.Add(b);
             Rect bounds = Window.Current.Bounds;
             b.setPosition(FishUtil.random.NextDouble() * bounds.Width, FishUtil.random.NextDouble() * bounds.Height);
             if (Preferences.BubbleAutoSize) Preferences.getInstance().AutoSizeBubbleRadius();
+            return b;
         }
 
         public Bubble catchBubble(Point p)
